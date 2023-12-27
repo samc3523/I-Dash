@@ -1,7 +1,7 @@
 {
-  "name": "nyevite",
+  "name": "ipad_dash",
   "version": "1.0.0",
-  "description": "NYE",
+  "description": "Ipad Dash",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
