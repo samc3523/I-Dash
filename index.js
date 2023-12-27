@@ -2,6 +2,10 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const { readMail } = require('./readEmail');
+const { getTransit } = require('./getTransit');
+const {getWeather } = require('./getWeather');
+
+
 //Loads the handlebars module
 const handlebars = require('express-handlebars');
 //Sets our app to use the handlebars engine
@@ -19,17 +23,63 @@ res.render('main');
 }); 
 
 
+// messages proxy server 
 app.get('/api/messages',messages);
 //config details for email library 
+const addressbook = [
+    {'name':'Sam','number':'5082693523'},
+    {'name':'Liam','number':'6175432323'},
+    {'name':'John','number':'2159906534'},
+    {'name':'Santi','number':'6463841729'},
+]
 
+function fna (msgs){
+    let cleaned = [] 
+    let i = 0
+    while (i < msgs.length) {
+        let j = 0;
+        while (j < addressbook.length) {
+            if (msgs[i].from.includes(addressbook[j].number)){
+                //console.log(addressbook[j])
+                msgs[i].from = addressbook[j].name
+                cleaned.push(msgs[i])
+            };
+        j++;
+        }
+    i++;
+    }
+return cleaned;
+};
 
 async function messages(req, res){
     readMail().then(msgs => {  
-        console.log(msgs);
-        res.json(msgs);
+        //console.log(msgs);
+        filtered = fna(msgs)
+        //console.log(filtered)
+        res.json(filtered);
     })
     
 };
-console.log(process.env.USERNAME)
-console.log(process.env.PASSWORD);
+
+// transit proxy server 
+app.get('/api/transit/:stop',transit);
+
+async function transit(req, res){
+    getTransit(req.params['stop']).then(transit => {  
+        //console.log(transit);
+        res.json(transit);
+    })
+};
+
+// weather proxy server 
+
+app.get('/api/weather',weather);
+
+async function weather(req, res){
+    getWeather().then(weather => {  
+        //console.log(weather);
+        res.json(weather);
+    })
+};
+
 app.listen(port, () => console.log(`App listening to port ${port}`));

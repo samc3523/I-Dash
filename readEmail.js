@@ -7,7 +7,7 @@ const readMail = async () => {
   let msgs = [] 
     try {
       const connection = await imaps.connect(READ_MAIL_CONFIG);
-      console.log('CONNECTION SUCCESSFUL', new Date().toString());
+      //console.log('CONNECTION SUCCESSFUL', new Date().toString());
       const box = await connection.openBox('INBOX');
       const searchCriteria = ['ALL'];
       const fetchOptions = {

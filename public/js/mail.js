@@ -1,31 +1,69 @@
-
-async function getMsgs() {
-    let response = await fetch("/api/messages");
-    let msgs = await response.json();
-    return msgs;
-};
-
-function addMsg(from,text,id) {
-  // create a new div element
-  const msg = document.createElement("div");
-  msg.textContent = text;
-  msg.setAttribute('class', "bubble bubble-bottom-left");
-  msg.setAttribute('id', id);
-  document.getElementById("message_container").appendChild(msg);
-}
-
-
-
-async function main() { 
-    getMsgs().then(msgs => {
-        let i = 0;
-        while (i < msgs.length) {
-        let myElem = document.getElementById(msgs[i].id);
-        if (myElem === null) 
-            {addMsg(msgs[i].from,msgs[i].msg,msgs[i].id)};
-        i++;
+function getMsgs(callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/api/messages');
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          var msgs = JSON.parse(xhr.responseText);
+          callback(null, msgs);
+        } else {
+          var error = new Error('Error: ' + xhr.status + ' - ' + xhr.statusText);
+          callback(error, null);
         }
-     })      
-};
+      }
+    };
+  
+    xhr.onerror = function() {
+      var error = new Error('Network error occurred');
+      callback(error, null);
+    };
+  
+    xhr.send();
+  }
+  
+  function addMsg(from, text, id) {
+    var msgContainer = document.getElementById("messages_container");
+    //create individual message with bubble and from field
+    var msgWhole = document.createElement("div");
+    msgWhole.className = "message_whole";
+    // create bubble with msg contents
+    var msg = document.createElement("div");
+    msg.className = "bubble bubble-bottom-left";
+    msg.textContent = text;
+    msg.id = id; 
+    // to remove duplicates
+    // create "from" field
+    var fromWho = document.createElement("p");
+    fromWho.textContent = from;
+    fromWho.className = "from";
+    //place items
+    msgContainer.appendChild(msgWhole);
+    msgWhole.appendChild(msg);
+    msgWhole.appendChild(fromWho);
+  }
 
-setInterval(main,5000);
+
+  function scrollToBottom() {
+    var scrollableDiv = document.getElementById('messages_container');
+    scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
+  }
+  
+  function main() {
+    scrollToBottom();
+    getMsgs(function(error, msgs) {
+      if (!error && msgs) {
+        for (var i = 0; i < msgs.length; i++) {
+          var myElem = document.getElementById(msgs[i].id);
+          if (myElem === null) {
+            addMsg(msgs[i].from, msgs[i].msg, msgs[i].id);
+          }
+        }
+      } else {
+        console.error('Error fetching messages:', error.message);
+      }
+    });
+  }
+  
+  setInterval(main, 5000);
+  
+  

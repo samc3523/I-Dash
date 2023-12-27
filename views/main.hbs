@@ -1,35 +1,39 @@
-<div class="container">
-  <div class="weather"> 
-    <div class="card">
-      <div class="container_card">
-        <div> <span> <b id="temp"> 00</b>&deg;  Feels Like <b id="feels"> 00</b>&deg; </span> <img id="wicon" class="daynight" src="images/night/moon.png"></div> 
-        <div> <span>  High  <b id="hi"> 00</b>&deg; Low <b id="low"> 00</b>&deg; </span> </div> 
-        <div> <span>  Sunrise  <b id="rise"> 00 </b> Sunset <b id="set"> 00 </b> </span> </div> 
-      </div>
-    </div>
-  </div>
-  <div class="Transit"> 
-    <div class="card">
-      <div class="container_card">
-        <div> <span> Griggs St Inbound</span> </div> 
-        <div> <p> <img class="train" src="images/greenb.png"> <b id="grig-in"> 2m, 3m </b> </p> </div>
-        <div> <span> Griggs St Outbound</span> </div>       
-        <div> <p> <img class="train" src="images/greenb.png"> <b id="grig-out"> 2m, 3m </b> </p> </div>
-        <div> <span> Harvard Ave Inbound</span> </div> 
-        <div> <p> <img class="train" src="images/greenb.png"> <b id="hvd-in"> 2m, 3m </b> </p> </div>
-        <div> <span> Harvard Ave Outbound</span> </div>       
-        <div> <p> <img class="train" src="images/greenb.png"> <b id="hvd-out"> 2m, 3m </b> </p> </div>
-      </div>
-    </div>
-  </div>
-  <div class="Message"> 
-    <div class="card">
-      <div class="container_card" id="message_container">
-        
+  <table class="layout">
+    <tr>
+      <td rowspan="2" class="messages">
+          <div class="card">
+              <div class="messages_container" id="messages_container">
+                </div>
+          </div>
+      </td>
+      <td class="weather">
+        <div class="card">
+            <div class="container_card">
+              <div> <span> <b id="temp"> 00</b>&deg;  Feels Like <b id="feels"> 00</b>&deg; </span> <img id="wicon" class="daynight" src="images/night/moon.png"></div> 
+              <div> <span>  High  <b id="hi"> 00</b>&deg; Low <b id="low"> 00</b>&deg; </span> </div> 
+            </div>
+          </div>
         </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="transit">
+ <div class="Transit"> 
+        <div class="card">
+            <div class="container_card">
+              <div> <span> Griggs St Inbound</span> </div> 
+              <div> <p> <img class="train" src="images/greenb.png"> <b id="grig-in"> 2m, 3m </b> </p> </div>
+              <div> <span> Griggs St Outbound</span> </div>       
+              <div> <p> <img class="train" src="images/greenb.png"> <b id="grig-out"> 2m, 3m </b> </p> </div>
+              <div> <span> Harvard Ave Inbound</span> </div> 
+              <div> <p> <img class="train" src="images/greenb.png"> <b id="hvd-in"> 2m, 3m </b> </p> </div>
+              <div> <span> Harvard Ave Outbound</span> </div>       
+              <div> <p> <img class="train" src="images/greenb.png"> <b id="hvd-out"> 2m, 3m </b> </p> </div>
+            </div>
+          </div>
+        </div>
+      </td>
       </div>
-
-
-  </div>
-</div>
-
+    </div>
+    </tr>
+  </table>
