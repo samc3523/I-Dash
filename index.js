@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const { readMail } = require('./readEmail');
-const { getTransit } = require('./getTransit');
-const {getWeather } = require('./getWeather');
+const { readMail } = require('./api/readEmail');
+const { getTransit } = require('./api/getTransit');
+const {getWeather } = require('./api/getWeather');
 
 
 //Loads the handlebars module
