@@ -123,4 +123,116 @@ body, html {
   padding: 10px;
 }
 
+/* tweet styles */
+
+.contentContainer {
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: #E9EAED;
+  width: 100%;
+  height: 100%;
+  padding-top: 10%;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* For Safari 5 compatibility */
+.twitter.boxContainer {
+  width: 410px;
+  height: 180px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #FFFFFF;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.twitter.boxContainer div.lineSplit {
+  width: 100%;
+  height: 1px;
+  background: #dcdee3;
+}
+
+.twitter.boxContainer .tweetHeader {
+  color: #8899a6;
+  font-size: 15px;
+  font-weight: 500;
+  overflow: hidden;
+  line-height: 35px;
+  margin-left: 30px;
+}
+
+.twitter.boxContainer .messageBox {
+  width: 93%;
+  padding: 5px;
+  height: 60px;
+  color: #292F33;
+  font-size: 13px;
+  font-weight: 200;
+  margin: 10px auto;
+  border-radius: 3px;
+  border: 1px solid #a3d4f2;
+}
+
+.twitter.boxContainer .wordCounter {
+  background-color: transparent;
+  color: #8899a6;
+  display: inline-block;
+  width: 70%;
+  border: 0;
+  padding: 0 15px;
+  position: relative;
+  vertical-align: top;
+  top: 10px;
+  text-align: right;
+  font-size: 14px;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, .75);
+}
+
+.twitter.boxContainer .postButton {
+  width: 80px;
+  height: 35px;
+  border: none;
+  float: right;
+  color: #FFFFFF;
+  display: block;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin: 0 10px 0 0;
+  background-color: #1b95e0;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  padding-left: 20px;
+}
+
+/* Additional styles for button hover and active states */
+.twitter.boxContainer .postButton:hover {
+  outline: none;
+}
+
+.twitter.boxContainer .postButton:active {
+  background-color: #3B5998;
+  -webkit-box-shadow: 0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15);
+  -moz-box-shadow: 0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15);
+  box-shadow: 0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15);
+}
+
+/* Styles for the close button - adjust for Safari 5 */
+.twitter.boxContainer .close {
+  cursor: pointer;
+  float: right;
+  margin: 12px;
+  width: 10px;
+  height: 10px;
+  opacity: 0.6;
+  /* Adjust additional styles for the close button if needed */
+}
+
+
 

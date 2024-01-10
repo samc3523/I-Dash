@@ -53,9 +53,9 @@ function getMsgs(callback) {
     getMsgs(function(error, msgs) {
       if (!error && msgs) {
         for (var i = 0; i < msgs.length; i++) {
-          var myElem = document.getElementById(msgs[i].id);
+          var myElem = document.getElementById(msgs[i].uid);
           if (myElem === null) {
-            addMsg(msgs[i].from, msgs[i].msg, msgs[i].id);
+            addMsg(msgs[i].from, msgs[i].content, msgs[i].uid);
           }
         }
       } else {
@@ -64,6 +64,6 @@ function getMsgs(callback) {
     });
   }
   
-  setInterval(main, 5000);
+setInterval(main,1000);
   
   

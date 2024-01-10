@@ -4,11 +4,26 @@ const port = 3000;
 const { readMail } = require('./api/readEmail');
 const { getTransit } = require('./api/getTransit');
 const {getWeather } = require('./api/getWeather');
-
-
 //Loads the handlebars module
 const handlebars = require('express-handlebars');
+const { spawn } = require('child_process');
+// Launch external script
+const externalScriptProcess = spawn('node', ['api/writeEmail.js']);
+
+externalScriptProcess.stdout.on('data', data => {
+  
+    (`External script stdout: ${data}`);
+});
+
+externalScriptProcess.stderr.on('data', data => {
+  console.error(`External script stderr: ${data}`);
+});
+
+externalScriptProcess.on('close', code => {
+  console.log(`External script process exited with code ${code}`);
+});
 //Sets our app to use the handlebars engine
+
 app.set('view engine', 'hbs');
 //Sets handlebars configurations (we will go through them later on)
 app.engine('hbs', handlebars.engine({
@@ -19,12 +34,15 @@ defaultLayout: 'index.hbs',
 app.use(express.static('public'))
 app.get('/', (req, res) => {
 //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
-res.render('main');
+    res.render('main');
 }); 
+
 
 
 // messages proxy server 
 app.get('/api/messages',messages);
+
+
 //config details for email library 
 const addressbook = [
     {'name':'Sam','number':'5082693523'},
@@ -74,7 +92,6 @@ async function transit(req, res){
 // weather proxy server 
 
 app.get('/api/weather',weather);
-
 async function weather(req, res){
     getWeather().then(weather => {  
         //console.log(weather);

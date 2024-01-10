@@ -29,5 +29,5 @@
     fetchTransit('place-grigg', updateTransit);
   }
 
-  setInterval(main, 1000);
+setInterval(main, 1000);
 
